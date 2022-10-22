@@ -1,0 +1,37 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/icons/arrow-left.png",
+      "sha1": "955c34f307089adbf5eb26c616173b8f72812b39"
+    },
+    {
+      "path": "assets/icons/arrow-right.png",
+      "sha1": "50b7c7ad82794a599fc0dbd7de309676b55477d2"
+    },
+    {
+      "path": "assets/icons/basket.png",
+      "sha1": "58e6016edaa386af8940db772513233164762c84"
+    },
+    {
+      "path": "assets/icons/heart-filled.png",
+      "sha1": "8319df7b782a4532e923b75dde7ee199ef338b94"
+    },
+    {
+      "path": "assets/icons/heart.png",
+      "sha1": "f468d9712307a51bac3f240d58e35fff76b55699"
+    },
+    {
+      "path": "assets/icons/home.png",
+      "sha1": "a886554ebf95392f7c92dd5b79c5569f8961b10e"
+    },
+    {
+      "path": "assets/icons/menu.png",
+      "sha1": "c883bc4da4b7b959a28d989732acc163d623f12f"
+    },
+    {
+      "path": "assets/icons/search.png",
+      "sha1": "201b565ab496d5cf3dd66cd952ca3ffed5c112a1"
+    }
+  ]
+}
