@@ -5,6 +5,7 @@ import HomeScreen from '../screens/HomeScreen';
 import Avatar from '../components/Avatar';
 import StackNavigationHeader from './StackNavigationHeader';
 import {images} from '../consts/images';
+import {bgColor} from '../consts/colors';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +16,9 @@ const StackNavigationHome = () => {
         name="Home"
         component={HomeScreen}
         options={({navigation}) => ({
+          headerStyle: {
+            backgroundColor: bgColor,
+          },
           headerTitle: () => <StackNavigationHeader />,
           headerLeft: () => (
             <Pressable onPress={() => navigation.openDrawer()}>
