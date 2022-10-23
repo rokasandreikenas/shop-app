@@ -17,12 +17,12 @@ export const resetCartItems = () => {
   return axios.delete(`${api}/cart`).then(res => res.data);
 };
 
-export const deleteCartItem = (id: ItemDefinition['id']) => {
+export const deleteCartItem = (id: CartItemDefinition['item_id']) => {
   return axios.delete(`${api}/cart/${id}`).then(res => res.data);
 };
 
 export const updateCartItem = (
-  id: ItemDefinition['id'],
+  id: CartItemDefinition['item_id'],
   quantity: number,
 ): Promise<CartItemDefinition> => {
   return axios
