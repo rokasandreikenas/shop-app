@@ -3,8 +3,11 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import ItemAddButton from '../components/Item/ItemAddButton';
+import ItemDescription from '../components/Item/ItemDescription';
 import ItemName from '../components/Item/ItemName';
 import ItemPrice from '../components/Item/ItemPrice';
+import Loader from '../components/Loader';
+import {useItem} from '../hooks/items';
 import {RootStackParamList} from '../types/routes';
 
 type ItemRoute = RouteProp<RootStackParamList, 'Item'>;
@@ -17,23 +20,31 @@ interface Props {
 
 const ItemScreen = ({route, navigation}: Props) => {
   const {item} = route.params;
+  const {data, isLoading} = useItem(item.id);
+  const title = data?.name ?? item.name;
 
   React.useEffect(() => {
-    navigation.setOptions({
-      title: item.name,
-    });
-  }, [navigation, item]);
+    navigation.setOptions({title});
+  }, [navigation, title]);
 
   return (
     <View style={styles.container}>
-      <Image source={{uri: item.image}} style={styles.image} />
-      <View style={styles.details}>
-        <ItemName name={item.name} fontSize={24} />
-        <ItemPrice price={item.price} fontSize={24} />
-      </View>
-      <View style={styles.addButton}>
-        <ItemAddButton onPress={() => {}} fontSize={20} />
-      </View>
+      {isLoading && <Loader />}
+      {data && (
+        <>
+          <Image source={{uri: data.image}} style={styles.image} />
+          <View style={styles.details}>
+            <ItemName name={data.name} fontSize={24} />
+            <ItemPrice price={item.price} fontSize={24} />
+          </View>
+          <View style={styles.description}>
+            <ItemDescription description={data.description} />
+          </View>
+          <View style={styles.addButton}>
+            <ItemAddButton onPress={() => {}} fontSize={20} />
+          </View>
+        </>
+      )}
     </View>
   );
 };
@@ -44,13 +55,22 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '30%',
   },
+
   details: {
-    padding: 24,
+    paddingHorizontal: 24,
+    marginTop: 24,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  description: {
+    paddingHorizontal: 24,
+    marginTop: 12,
+  },
+  info: {
+    flex: 1,
+  },
   addButton: {
-    marginTop: 24,
+    marginTop: 32,
     alignItems: 'center',
   },
 });

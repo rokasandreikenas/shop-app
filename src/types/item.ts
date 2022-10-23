@@ -3,4 +3,5 @@ export type ItemDefinition = {
   price: number;
   name: string;
   image: string;
+  description?: string;
 };

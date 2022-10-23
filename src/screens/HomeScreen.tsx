@@ -3,44 +3,25 @@ import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import Carousel from '../components/Carousel';
 import Item from '../components/Item';
+import Loader from '../components/Loader';
 import {images} from '../consts/images';
 import {ITEM} from '../consts/routes';
+import {useItems} from '../hooks/items';
 import MainLayout from '../layouts/MainLayout';
 import {RootStackParamList} from '../types/routes';
-
-const items = [
-  {
-    id: 53,
-    price: 321.23,
-    name: 'Widget Adapter',
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png',
-  },
-  {
-    id: 52,
-    price: 321.23,
-    name: 'Widget Adapter',
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png',
-  },
-  {
-    id: 50,
-    price: 321.23,
-    name: 'Widget Adapter',
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png',
-  },
-];
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const HomeScreen = ({navigation}: Props) => {
+  const {data, isLoading} = useItems();
+
   return (
     <MainLayout>
       <Carousel images={[images.bag1, images.bag2, images.bag3]} />
+      {isLoading && <Loader />}
       <ScrollView>
         <View style={styles.items}>
-          {items.map(item => (
+          {data?.map(item => (
             <View key={item.id} style={styles.item}>
               <Item
                 item={item}
