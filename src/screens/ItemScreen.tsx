@@ -8,6 +8,7 @@ import ItemName from '../components/Item/ItemName';
 import ItemPrice from '../components/Item/ItemPrice';
 import Loader from '../components/Loader';
 import {useItem} from '../hooks/items';
+import {ItemDefinition} from '../types/item';
 import {RootStackParamList} from '../types/routes';
 
 type ItemRoute = RouteProp<RootStackParamList, 'Item'>;
@@ -19,13 +20,17 @@ interface Props {
 }
 
 const ItemScreen = ({route, navigation}: Props) => {
-  const {item} = route.params;
+  const {item, mutation} = route.params;
   const {data, isLoading} = useItem(item.id);
   const title = data?.name ?? item.name;
 
   React.useEffect(() => {
     navigation.setOptions({title});
   }, [navigation, title]);
+
+  const handleAddItem = (id: ItemDefinition['id']) => {
+    mutation.mutateAsync(id);
+  };
 
   return (
     <View style={styles.container}>
@@ -41,7 +46,11 @@ const ItemScreen = ({route, navigation}: Props) => {
             <ItemDescription description={data.description} />
           </View>
           <View style={styles.addButton}>
-            <ItemAddButton onPress={() => {}} fontSize={20} />
+            <ItemAddButton
+              onPress={() => handleAddItem(data.id)}
+              disabled={mutation.isLoading}
+              fontSize={20}
+            />
           </View>
         </>
       )}

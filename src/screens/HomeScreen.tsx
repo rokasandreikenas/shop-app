@@ -6,14 +6,21 @@ import Item from '../components/Item';
 import Loader from '../components/Loader';
 import {images} from '../consts/images';
 import {ITEM} from '../consts/routes';
+import {useAddCartItem} from '../hooks/cart';
 import {useItems} from '../hooks/items';
 import MainLayout from '../layouts/MainLayout';
+import {ItemDefinition} from '../types/item';
 import {RootStackParamList} from '../types/routes';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const HomeScreen = ({navigation}: Props) => {
   const {data, isLoading} = useItems();
+  const mutation = useAddCartItem();
+
+  const handleAddItem = (id: ItemDefinition['id']) => {
+    mutation.mutateAsync(id);
+  };
 
   return (
     <MainLayout>
@@ -25,7 +32,9 @@ const HomeScreen = ({navigation}: Props) => {
             <View key={item.id} style={styles.item}>
               <Item
                 item={item}
-                openDetails={() => navigation.navigate(ITEM, {item})}
+                isLoading={mutation.isLoading}
+                openDetails={() => navigation.navigate(ITEM, {item, mutation})}
+                handleAddItem={() => handleAddItem(item.id)}
               />
             </View>
           ))}

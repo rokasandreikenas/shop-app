@@ -10,11 +10,12 @@ import ItemPrice from './ItemPrice';
 
 interface Props {
   item: ItemDefinition;
+  isLoading: boolean;
   openDetails: () => void;
   handleAddItem: () => void;
 }
 
-const Item = ({item, openDetails, handleAddItem}: Props) => {
+const Item = ({item, isLoading, openDetails, handleAddItem}: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.favoriteBlock}>
@@ -26,7 +27,7 @@ const Item = ({item, openDetails, handleAddItem}: Props) => {
       </View>
       <ItemPrice price={item.price} />
       <View style={styles.block}>
-        <ItemAddButton onPress={handleAddItem} />
+        <ItemAddButton onPress={handleAddItem} disabled={isLoading} />
       </View>
     </View>
   );
