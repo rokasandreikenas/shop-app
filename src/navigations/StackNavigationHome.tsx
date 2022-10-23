@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, Pressable, StyleSheet} from 'react-native';
+import {Image, TouchableOpacity, StyleSheet} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
 import Avatar from '../components/Avatar';
@@ -22,14 +22,14 @@ const StackNavigationHome = () => {
           },
           headerTitle: () => <StackNavigationHeader />,
           headerLeft: () => (
-            <Pressable onPress={() => navigation.openDrawer()}>
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
               <Image style={styles.iconStyle} source={images.menu} />
-            </Pressable>
+            </TouchableOpacity>
           ),
           headerRight: () => (
-            <Pressable onPress={() => {}}>
+            <TouchableOpacity onPress={() => {}}>
               <Avatar image={images.logo} rounded />
-            </Pressable>
+            </TouchableOpacity>
           ),
           headerShadowVisible: false,
         })}
