@@ -7,7 +7,7 @@ interface Props {
   price: ItemDefinition['price'];
 }
 
-const Price = ({price}: Props) => {
+const ItemPrice = ({price}: Props) => {
   return (
     <Text style={styles.price}>
       {dollarSign}
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Price;
+export default ItemPrice;

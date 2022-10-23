@@ -7,7 +7,7 @@ interface Props {
   name: ItemDefinition['name'];
 }
 
-const Name = ({name}: Props) => {
+const ItemName = ({name}: Props) => {
   return <Text style={styles.name}>{name}</Text>;
 };
 
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Name;
+export default ItemName;

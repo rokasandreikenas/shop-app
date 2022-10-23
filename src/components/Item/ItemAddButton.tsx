@@ -5,7 +5,7 @@ interface Props {
   onPress: () => void;
 }
 
-const Add = ({onPress}: Props) => {
+const ItemAddButton = ({onPress}: Props) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <Text style={styles.text}>SHOP NOW</Text>
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Add;
+export default ItemAddButton;
