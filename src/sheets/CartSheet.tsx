@@ -30,7 +30,7 @@ const CartSheet = ({
   snapPoints = ['70%', '100%'],
   setCount,
 }: Props) => {
-  const {data} = useCartItems();
+  const {data, refetch} = useCartItems();
   const {mutateAsync: updateCartItem, isLoading: updateLoading} =
     useUpdateCartItem();
   const {mutateAsync: deleteCartItem, isLoading: deleteLoading} =
@@ -51,10 +51,14 @@ const CartSheet = ({
   ) => {
     const newQuantity = type === 'reduce' ? quantity - 1 : quantity + 1;
     if (quantity > 2) {
-      updateCartItem({id, quantity: newQuantity});
+      updateCartItem({id, quantity: newQuantity}).then(() => refetch());
     } else {
-      deleteCartItem(id);
+      deleteCartItem(id).then(() => refetch());
     }
+  };
+
+  const handleResetCartItems = () => {
+    resetCartItems().then(() => refetch());
   };
 
   return (
@@ -91,7 +95,7 @@ const CartSheet = ({
           <Button
             title="Proceed to buy"
             disabled={isLoading}
-            onPress={resetCartItems}
+            onPress={handleResetCartItems}
           />
         </View>
       </View>
