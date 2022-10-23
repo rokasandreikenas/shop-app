@@ -4,7 +4,7 @@ import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 import Avatar from '../components/Avatar';
 import {bgColor} from '../consts/colors';
 import {images} from '../consts/images';
-import {HOME} from '../consts/routes';
+import {HOME, ITEM} from '../consts/routes';
 import HomeScreen from '../screens/HomeScreen';
 import ItemScreen from '../screens/ItemScreen';
 import {RootStackParamList} from '../types/routes';
@@ -36,7 +36,7 @@ const StackNavigationHome = () => {
           headerShadowVisible: false,
         })}
       />
-      <Stack.Screen name="Item" component={ItemScreen} />
+      <Stack.Screen name={ITEM} component={ItemScreen} />
     </Stack.Navigator>
   );
 };
