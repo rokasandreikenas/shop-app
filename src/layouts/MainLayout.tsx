@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {bgColor} from '../consts/colors';
 
 interface Props {
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
 }
 
 const MainLayout = ({children}: Props) => {
