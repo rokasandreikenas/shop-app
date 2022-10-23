@@ -55,6 +55,8 @@ A few of the things you can do with shopApp:
 
 - `yarn` to install dependencies
 
+- `cd ios` and `pod install` to install pods for ios
+
 - `yarn run ios` to start the packager and run the app in the iOS simulator
 
 - `yarn run android` to start the packager and run the app in the the Android device/emulator
