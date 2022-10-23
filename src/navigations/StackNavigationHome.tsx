@@ -6,14 +6,15 @@ import Avatar from '../components/Avatar';
 import StackNavigationHeader from './StackNavigationHeader';
 import {images} from '../consts/images';
 import {bgColor} from '../consts/colors';
+import {HOME} from '../consts/routes';
 
 const Stack = createNativeStackNavigator();
 
 const StackNavigationHome = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName={HOME}>
       <Stack.Screen
-        name="Home"
+        name={HOME}
         component={HomeScreen}
         options={({navigation}) => ({
           headerStyle: {

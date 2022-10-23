@@ -1,10 +1,10 @@
 import React from 'react';
 import {Image, ImageSourcePropType, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import StackNavigationHome from './StackNavigationHome';
 import EmptyScreen from '../screens/EmptyScreen';
 import {activeIndicatorColor, indicatorColor} from '../consts/colors';
 import {images} from '../consts/images';
-import StackNavigationHome from './StackNavigationHome';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -48,7 +48,6 @@ const TabNavigation = () => {
 };
 
 const styles = StyleSheet.create({
-  iconStyle: {width: 24, height: 24},
   floatingBar: {
     position: 'absolute',
     bottom: 32,
