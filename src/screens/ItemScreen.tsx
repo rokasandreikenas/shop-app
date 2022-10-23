@@ -7,8 +7,8 @@ import ItemDescription from '../components/Item/ItemDescription';
 import ItemName from '../components/Item/ItemName';
 import ItemPrice from '../components/Item/ItemPrice';
 import Loader from '../components/Loader';
+import {useAddCartItem} from '../hooks/cart';
 import {useItem} from '../hooks/items';
-import {ItemDefinition} from '../types/item';
 import {RootStackParamList} from '../types/routes';
 
 type ItemRoute = RouteProp<RootStackParamList, 'Item'>;
@@ -20,17 +20,14 @@ interface Props {
 }
 
 const ItemScreen = ({route, navigation}: Props) => {
-  const {item, mutation} = route.params;
+  const {item} = route.params;
   const {data, isLoading} = useItem(item.id);
+  const {mutateAsync: addCartItem, isLoading: addLoading} = useAddCartItem();
   const title = data?.name ?? item.name;
 
   React.useEffect(() => {
     navigation.setOptions({title});
   }, [navigation, title]);
-
-  const handleAddItem = (id: ItemDefinition['id']) => {
-    mutation.mutateAsync(id);
-  };
 
   return (
     <View style={styles.container}>
@@ -47,8 +44,8 @@ const ItemScreen = ({route, navigation}: Props) => {
           </View>
           <View style={styles.addButton}>
             <ItemAddButton
-              onPress={() => handleAddItem(data.id)}
-              disabled={mutation.isLoading}
+              onPress={() => addCartItem(data.id)}
+              disabled={addLoading}
               fontSize={20}
             />
           </View>
