@@ -1,15 +1,16 @@
 import React from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import {dollarSign} from '../../consts/currency';
 import {ItemDefinition} from '../../types/item';
 
 interface Props {
   price: ItemDefinition['price'];
+  fontSize?: number;
 }
 
-const ItemPrice = ({price}: Props) => {
+const ItemPrice = ({price, fontSize = 18}: Props) => {
   return (
-    <Text style={styles.price}>
+    <Text style={[styles.price, {fontSize}]}>
       {dollarSign}
       {price}
     </Text>
@@ -18,7 +19,6 @@ const ItemPrice = ({price}: Props) => {
 
 const styles = StyleSheet.create({
   price: {
-    fontSize: 18,
     fontWeight: '900',
   },
 });

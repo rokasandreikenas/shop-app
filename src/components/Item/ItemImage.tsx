@@ -1,19 +1,28 @@
 import React from 'react';
-import {Image, StyleSheet} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {ItemDefinition} from '../../types/item';
 
 interface Props {
   image: ItemDefinition['image'];
+  onPress: () => void;
 }
 
-const ItemImage = ({image}: Props) => {
-  return <Image source={{uri: image}} style={styles.image} />;
+const ItemImage = ({image, onPress}: Props) => {
+  return (
+    <TouchableOpacity onPress={onPress} style={styles.container}>
+      <Image source={{uri: image}} style={styles.image} />
+    </TouchableOpacity>
+  );
 };
 
 const styles = StyleSheet.create({
-  image: {
+  container: {
     width: '100%',
     height: 125,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
   },
 });
 

@@ -1,14 +1,17 @@
-import React from 'react';
-import {Image, TouchableOpacity, StyleSheet} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from '../screens/HomeScreen';
-import Avatar from '../components/Avatar';
-import StackNavigationHeader from './StackNavigationHeader';
-import {images} from '../consts/images';
-import {bgColor} from '../consts/colors';
-import {HOME} from '../consts/routes';
+import React from 'react';
+import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 
-const Stack = createNativeStackNavigator();
+import Avatar from '../components/Avatar';
+import {bgColor} from '../consts/colors';
+import {images} from '../consts/images';
+import {HOME} from '../consts/routes';
+import HomeScreen from '../screens/HomeScreen';
+import ItemScreen from '../screens/ItemScreen';
+import {RootStackParamList} from '../types/routes';
+import StackNavigationHeader from './StackNavigationHeader';
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const StackNavigationHome = () => {
   return (
@@ -27,13 +30,14 @@ const StackNavigationHome = () => {
             </TouchableOpacity>
           ),
           headerRight: () => (
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity>
               <Avatar image={images.logo} rounded />
             </TouchableOpacity>
           ),
           headerShadowVisible: false,
         })}
       />
+      <Stack.Screen name="Item" component={ItemScreen} />
     </Stack.Navigator>
   );
 };

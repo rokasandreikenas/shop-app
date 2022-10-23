@@ -1,14 +1,15 @@
 import React from 'react';
-import {Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 interface Props {
   onPress: () => void;
+  fontSize?: number;
 }
 
-const ItemAddButton = ({onPress}: Props) => {
+const ItemAddButton = ({onPress, fontSize = 13}: Props) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Text style={styles.text}>SHOP NOW</Text>
+      <Text style={[styles.text, {fontSize}]}>SHOP NOW</Text>
     </TouchableOpacity>
   );
 };

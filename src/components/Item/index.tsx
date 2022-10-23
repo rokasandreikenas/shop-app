@@ -10,15 +10,16 @@ import ItemPrice from './ItemPrice';
 
 interface Props {
   item: ItemDefinition;
+  openDetails: () => void;
 }
 
-const Item = ({item}: Props) => {
+const Item = ({item, openDetails}: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.favoriteBlock}>
         <Favorite onPress={() => {}} />
       </View>
-      <ItemImage image={item.image} />
+      <ItemImage image={item.image} onPress={openDetails} />
       <View style={styles.block}>
         <ItemName name={item.name} />
       </View>

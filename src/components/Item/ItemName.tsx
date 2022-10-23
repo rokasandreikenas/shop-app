@@ -1,20 +1,20 @@
 import React from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import {secondaryFont} from '../../consts/font';
 import {ItemDefinition} from '../../types/item';
 
 interface Props {
   name: ItemDefinition['name'];
+  fontSize?: number;
 }
 
-const ItemName = ({name}: Props) => {
-  return <Text style={styles.name}>{name}</Text>;
+const ItemName = ({name, fontSize = 18}: Props) => {
+  return <Text style={[styles.name, {fontSize}]}>{name}</Text>;
 };
 
 const styles = StyleSheet.create({
   name: {
     fontFamily: secondaryFont,
-    fontSize: 18,
     fontWeight: '500',
   },
 });

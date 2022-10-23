@@ -1,9 +1,12 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import Carousel from '../components/Carousel';
-import MainLayout from '../layouts/MainLayout';
-import {images} from '../consts/images';
 import Item from '../components/Item';
+import {images} from '../consts/images';
+import {ITEM} from '../consts/routes';
+import MainLayout from '../layouts/MainLayout';
+import {RootStackParamList} from '../types/routes';
 
 const items = [
   {
@@ -29,7 +32,9 @@ const items = [
   },
 ];
 
-const HomeScreen = () => {
+type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+
+const HomeScreen = ({navigation}: Props) => {
   return (
     <MainLayout>
       <Carousel images={[images.bag1, images.bag2, images.bag3]} />
@@ -37,7 +42,10 @@ const HomeScreen = () => {
         <View style={styles.items}>
           {items.map(item => (
             <View key={item.id} style={styles.item}>
-              <Item item={item} />
+              <Item
+                item={item}
+                openDetails={() => navigation.navigate(ITEM, {item})}
+              />
             </View>
           ))}
         </View>
