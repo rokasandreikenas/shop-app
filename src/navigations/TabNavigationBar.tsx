@@ -11,6 +11,7 @@ import {
 import {activeIndicatorColor, indicatorColor} from '../consts/colors';
 import {images} from '../consts/images';
 import CartSheet from '../sheets/CartSheet';
+import TabNavigationCart from './TabNavigationCart';
 
 const tabIcons: Record<string, ImageSourcePropType> = {
   TabHome: images.home,
@@ -26,6 +27,7 @@ const TabNavigationBar = ({
 }: BottomTabBarProps) => {
   const bottomSheetRef = React.useRef<BottomSheet>(null);
   const [open, setOpen] = React.useState(false);
+  const [count, setCount] = React.useState(0);
   const snapPoints = React.useMemo(() => ['70%', '100%'], []);
 
   const openBottomSheet = () => {
@@ -100,11 +102,13 @@ const TabNavigationBar = ({
             </Pressable>
           );
         })}
-        <Pressable onPress={handleToggleCartSheet}>
-          <Image style={[styles.icon]} source={images.basket} />
-        </Pressable>
+        <TabNavigationCart count={count} onPress={handleToggleCartSheet} />
       </View>
-      <CartSheet bottomSheetRef={bottomSheetRef} snapPoints={snapPoints} />
+      <CartSheet
+        bottomSheetRef={bottomSheetRef}
+        snapPoints={snapPoints}
+        setCount={setCount}
+      />
     </>
   );
 };
