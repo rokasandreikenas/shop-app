@@ -1,7 +1,6 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {Image, StyleSheet, TouchableOpacity} from 'react-native';
-
 import Avatar from '../components/Avatar';
 import {bgColor} from '../consts/colors';
 import {images} from '../consts/images';

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, View, ImageSourcePropType, StyleSheet} from 'react-native';
+import {Image, ImageSourcePropType, StyleSheet, View} from 'react-native';
 import {images as imagesConst} from '../../consts/images';
 import CarouselButton from './CarouselButton';
 

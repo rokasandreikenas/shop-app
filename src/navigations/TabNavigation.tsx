@@ -1,10 +1,10 @@
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {Image, ImageSourcePropType, StyleSheet} from 'react-native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import StackNavigationHome from './StackNavigationHome';
-import EmptyScreen from '../screens/EmptyScreen';
 import {activeIndicatorColor, indicatorColor} from '../consts/colors';
 import {images} from '../consts/images';
+import EmptyScreen from '../screens/EmptyScreen';
+import StackNavigationHome from './StackNavigationHome';
 
 const BottomTab = createBottomTabNavigator();
 

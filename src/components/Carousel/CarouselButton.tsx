@@ -1,5 +1,5 @@
 import React from 'react';
-import {Pressable, Image, StyleSheet, ImageSourcePropType} from 'react-native';
+import {Image, ImageSourcePropType, Pressable, StyleSheet} from 'react-native';
 
 interface Props {
   onPress: () => void;
