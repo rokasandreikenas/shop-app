@@ -11,9 +11,10 @@ import ItemPrice from './ItemPrice';
 interface Props {
   item: ItemDefinition;
   openDetails: () => void;
+  handleAddItem: () => void;
 }
 
-const Item = ({item, openDetails}: Props) => {
+const Item = ({item, openDetails, handleAddItem}: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.favoriteBlock}>
@@ -25,7 +26,7 @@ const Item = ({item, openDetails}: Props) => {
       </View>
       <ItemPrice price={item.price} />
       <View style={styles.block}>
-        <ItemAddButton onPress={() => {}} />
+        <ItemAddButton onPress={handleAddItem} />
       </View>
     </View>
   );
