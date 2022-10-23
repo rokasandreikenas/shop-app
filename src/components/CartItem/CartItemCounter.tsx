@@ -1,11 +1,26 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {images} from '../../consts/images';
+import {CartItemDefinition} from '../../types/cart';
 import SquareButton from '../SquareButton';
+
+interface Props {
+  cartItem: CartItemDefinition;
+  isLoading: boolean;
+  handleUpdateQuantity: (
+    id: CartItemDefinition['item_id'],
+    quantity: number,
+    type: 'reduce' | 'increase',
+  ) => void;
+}
 
 const boxSize = 36;
 
-const CartItemCounter = () => {
+const CartItemCounter = ({
+  cartItem,
+  isLoading,
+  handleUpdateQuantity,
+}: Props) => {
   return (
     <View style={styles.container}>
       <SquareButton
@@ -13,17 +28,23 @@ const CartItemCounter = () => {
         width={boxSize}
         height={boxSize}
         iconSize={10}
-        onPress={() => {}}
+        disabled={isLoading}
+        onPress={() =>
+          handleUpdateQuantity(cartItem.item_id, cartItem.quantity, 'reduce')
+        }
       />
       <View style={styles.countContainer}>
-        <Text style={styles.count}>0</Text>
+        <Text style={styles.count}>{cartItem.quantity}</Text>
       </View>
       <SquareButton
         image={images.plus}
         width={boxSize}
         height={boxSize}
         iconSize={10}
-        onPress={() => {}}
+        disabled={isLoading}
+        onPress={() =>
+          handleUpdateQuantity(cartItem.item_id, cartItem.quantity, 'increase')
+        }
       />
     </View>
   );

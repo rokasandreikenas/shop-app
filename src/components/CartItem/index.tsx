@@ -1,23 +1,33 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {ItemDefinition} from '../../types/item';
+import {CartItemDefinition} from '../../types/cart';
 import CartItemCounter from './CartItemCounter';
 import CartItemDetails from './CartItemDetails';
 import CartItemImage from './CartItemImage';
 
 interface Props {
-  item: ItemDefinition;
+  cartItem: CartItemDefinition;
+  isLoading: boolean;
+  handleUpdateQuantity: (
+    id: CartItemDefinition['item_id'],
+    quantity: number,
+    type: 'reduce' | 'increase',
+  ) => void;
 }
 
-const CartItem = ({item}: Props) => {
+const CartItem = ({cartItem, isLoading, handleUpdateQuantity}: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.leftSide}>
-        <CartItemImage image={item.image} />
-        <CartItemCounter />
+        <CartItemImage image={cartItem.image} />
+        <CartItemCounter
+          cartItem={cartItem}
+          isLoading={isLoading}
+          handleUpdateQuantity={handleUpdateQuantity}
+        />
       </View>
       <View style={styles.rightSide}>
-        <CartItemDetails item={item} />
+        <CartItemDetails cartItem={cartItem} />
       </View>
     </View>
   );

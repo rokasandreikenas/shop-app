@@ -1,9 +1,9 @@
 import React from 'react';
 import {Image, StyleSheet} from 'react-native';
-import {ItemDefinition} from '../../types/item';
+import {CartItemDefinition} from '../../types/cart';
 
 interface Props {
-  image: ItemDefinition['image'];
+  image: CartItemDefinition['image'];
 }
 
 const CartItemImage = ({image}: Props) => {

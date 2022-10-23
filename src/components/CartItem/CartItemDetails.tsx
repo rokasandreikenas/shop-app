@@ -1,23 +1,24 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {ItemDefinition} from '../../types/item';
+import {CartItemDefinition} from '../../types/cart';
+import ItemDescription from '../Item/ItemDescription';
 import ItemName from '../Item/ItemName';
 import ItemPrice from '../Item/ItemPrice';
 
 interface Props {
-  item: ItemDefinition;
+  cartItem: CartItemDefinition;
 }
 
-const CartItemDetails = ({item}: Props) => {
+const CartItemDetails = ({cartItem}: Props) => {
   return (
     <>
       <View style={styles.block}>
-        <ItemName name={item.name} />
+        <ItemName name={cartItem.name} />
       </View>
       <Text style={styles.title}>Lorem, ipsum dolor</Text>
-      <Text style={styles.subtitle}>Lorem ipsum dolor sit amet.</Text>
+      <ItemDescription description="Lorem ipsum dolor sit amet" fontSize={12} />
       <View style={styles.block}>
-        <ItemPrice price={item.price} />
+        <ItemPrice price={cartItem.price} />
       </View>
     </>
   );
@@ -29,10 +30,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: '500',
-  },
-  subtitle: {
-    fontSize: 12,
-    color: 'grey',
   },
 });
 

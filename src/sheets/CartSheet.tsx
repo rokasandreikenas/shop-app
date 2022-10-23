@@ -1,25 +1,55 @@
 import BottomSheet, {BottomSheetProps} from '@gorhom/bottom-sheet';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
+import Button from '../components/Button';
 import CartItem from '../components/CartItem';
+import {
+  useCartItems,
+  useDeleteCartItem,
+  useResetCartItems,
+  useUpdateCartItem,
+} from '../hooks/cart';
+import {CartItemDefinition} from '../types/cart';
 import BlurBackground from './BlurBackground';
 
 interface Props {
   bottomSheetRef: React.RefObject<BottomSheet>;
+  setCount: (count: number) => void;
   snapPoints?: BottomSheetProps['snapPoints'];
 }
 
-const items = [
-  {
-    id: 53,
-    price: 321.23,
-    name: 'Widget Adapter',
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png',
-  },
-];
+const CartSheet = ({
+  bottomSheetRef,
+  snapPoints = ['70%', '100%'],
+  setCount,
+}: Props) => {
+  const {data} = useCartItems();
+  const {mutateAsync: updateCartItem, isLoading: updateLoading} =
+    useUpdateCartItem();
+  const {mutateAsync: deleteCartItem, isLoading: deleteLoading} =
+    useDeleteCartItem();
+  const {mutateAsync: resetCartItems, isLoading: resetLoading} =
+    useResetCartItems();
 
-const CartSheet = ({bottomSheetRef, snapPoints = ['70%', '100%']}: Props) => {
+  const isLoading = updateLoading || deleteLoading || resetLoading;
+
+  useEffect(() => {
+    setCount(data?.length || 0);
+  }, [setCount, data?.length]);
+
+  const handleUpdateQuantity = (
+    id: CartItemDefinition['item_id'],
+    quantity: number,
+    type: 'reduce' | 'increase',
+  ) => {
+    const newQuantity = type === 'reduce' ? quantity - 1 : quantity + 1;
+    if (quantity > 2) {
+      updateCartItem({id, quantity: newQuantity});
+    } else {
+      deleteCartItem(id);
+    }
+  };
+
   return (
     <BottomSheet
       ref={bottomSheetRef}
@@ -28,12 +58,28 @@ const CartSheet = ({bottomSheetRef, snapPoints = ['70%', '100%']}: Props) => {
       backgroundComponent={BlurBackground}>
       <View style={styles.container}>
         <ScrollView>
-          {items.map(item => (
-            <View key={item.id} style={styles.cartItem}>
-              <CartItem item={item} />
+          {data?.map((cartItem, index) => (
+            <View
+              key={cartItem.item_id}
+              style={[
+                styles.cartItem,
+                index !== data?.length - 1 && styles.borderBottom,
+              ]}>
+              <CartItem
+                cartItem={cartItem}
+                isLoading={isLoading}
+                handleUpdateQuantity={handleUpdateQuantity}
+              />
             </View>
           ))}
         </ScrollView>
+        <View style={styles.buttonContainer}>
+          <Button
+            title="Proceed to buy"
+            disabled={isLoading}
+            onPress={resetCartItems}
+          />
+        </View>
       </View>
     </BottomSheet>
   );
@@ -46,6 +92,13 @@ const styles = StyleSheet.create({
   },
   cartItem: {
     marginBottom: 36,
+  },
+  borderBottom: {
+    borderBottomWidth: 1,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
 });
 
