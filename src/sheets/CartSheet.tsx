@@ -1,14 +1,25 @@
 import BottomSheet, {BottomSheetProps} from '@gorhom/bottom-sheet';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
+import CartItem from '../components/CartItem';
 import BlurBackground from './BlurBackground';
 
-type Props = {
-  bottomSheetRef: React.RefObject<any>;
+interface Props {
+  bottomSheetRef: React.RefObject<BottomSheet>;
   snapPoints?: BottomSheetProps['snapPoints'];
-};
+}
 
-const CartSheet = ({bottomSheetRef, snapPoints = ['60%', '25%']}: Props) => {
+const items = [
+  {
+    id: 53,
+    price: 321.23,
+    name: 'Widget Adapter',
+    image:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png',
+  },
+];
+
+const CartSheet = ({bottomSheetRef, snapPoints = ['70%', '100%']}: Props) => {
   return (
     <BottomSheet
       ref={bottomSheetRef}
@@ -16,7 +27,13 @@ const CartSheet = ({bottomSheetRef, snapPoints = ['60%', '25%']}: Props) => {
       snapPoints={snapPoints}
       backgroundComponent={BlurBackground}>
       <View style={styles.container}>
-        <Text>Awesome 🎉</Text>
+        <ScrollView>
+          {items.map(item => (
+            <View key={item.id} style={styles.cartItem}>
+              <CartItem item={item} />
+            </View>
+          ))}
+        </ScrollView>
       </View>
     </BottomSheet>
   );
@@ -24,7 +41,11 @@ const CartSheet = ({bottomSheetRef, snapPoints = ['60%', '25%']}: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 24,
+    paddingVertical: 24,
+    paddingHorizontal: 32,
+  },
+  cartItem: {
+    marginBottom: 36,
   },
 });
 

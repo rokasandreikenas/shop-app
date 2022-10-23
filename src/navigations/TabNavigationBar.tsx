@@ -26,7 +26,7 @@ const TabNavigationBar = ({
 }: BottomTabBarProps) => {
   const bottomSheetRef = React.useRef<BottomSheet>(null);
   const [open, setOpen] = React.useState(false);
-  const snapPoints = React.useMemo(() => ['60%', '25%'], []);
+  const snapPoints = React.useMemo(() => ['70%', '100%'], []);
 
   const openBottomSheet = () => {
     bottomSheetRef?.current?.snapToPosition(snapPoints[0]);

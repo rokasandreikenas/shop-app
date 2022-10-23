@@ -8,6 +8,8 @@ export const images = {
   basket: require('../../assets/icons/basket.png'),
   arrowLeft: require('../../assets/icons/arrow-left.png'),
   arrowRight: require('../../assets/icons/arrow-right.png'),
+  minus: require('../../assets/icons/minus.png'),
+  plus: require('../../assets/icons/plus.png'),
   bag1: require('../../assets/images/bag.jpeg'),
   bag2: require('../../assets/images/bag2.jpeg'),
   bag3: require('../../assets/images/bag3.jpeg'),
