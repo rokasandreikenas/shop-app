@@ -1,13 +1,15 @@
 import axios from 'axios';
 import {api} from '../consts/api';
 import {CartItemDefinition} from '../types/cart';
-import {ItemDefinition} from '../types/item';
 
 export const getCartItems = () => {
   return axios.get(`${api}/cart`).then(res => res.data);
 };
 
-export const addCartItem = (id: ItemDefinition['id'], quantity = 1) => {
+export const addCartItem = (
+  id: CartItemDefinition['item_id'],
+  quantity = 1,
+) => {
   return axios
     .post(`${api}/cart`, {}, {params: {id, quantity}})
     .then(res => res.data);
