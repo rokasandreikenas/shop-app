@@ -12,6 +12,7 @@ interface Props {
   width?: number | string;
   height?: number | string;
   iconSize?: number;
+  disabled?: boolean;
 }
 
 const defaultSize = 50;
@@ -22,11 +23,13 @@ const SquareButton = ({
   width = defaultSize,
   height = defaultSize,
   iconSize = 24,
+  disabled = false,
 }: Props) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[styles.container, {width, height}]}>
+      style={[styles.container, {width, height}]}
+      disabled={disabled}>
       <Image
         source={image}
         style={[styles.icon, {width: iconSize, height: iconSize}]}
