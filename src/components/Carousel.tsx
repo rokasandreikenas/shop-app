@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, ImageSourcePropType, StyleSheet, View} from 'react-native';
-import {images as imagesConst} from '../../consts/images';
-import CarouselButton from './CarouselButton';
+import {images as imagesConst} from '../consts/images';
+import SquareButton from './SquareButton';
 
 interface Props {
   images: ImageSourcePropType[];
@@ -23,13 +23,10 @@ const Carousel = ({images}: Props) => {
       <Image source={images[step]} style={styles.image} />
       <View style={styles.buttons}>
         <View style={styles.button}>
-          <CarouselButton image={imagesConst.arrowLeft} onPress={pressBack} />
+          <SquareButton image={imagesConst.arrowLeft} onPress={pressBack} />
         </View>
         <View style={styles.button}>
-          <CarouselButton
-            image={imagesConst.arrowRight}
-            onPress={pressForward}
-          />
+          <SquareButton image={imagesConst.arrowRight} onPress={pressForward} />
         </View>
       </View>
     </View>
