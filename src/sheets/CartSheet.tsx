@@ -1,8 +1,11 @@
 import BottomSheet, {BottomSheetProps} from '@gorhom/bottom-sheet';
+import {BottomTabNavigationEventMap} from '@react-navigation/bottom-tabs';
+import {NavigationHelpers, ParamListBase} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {Pressable, ScrollView, StyleSheet, View} from 'react-native';
 import Button from '../components/Button';
 import CartItem from '../components/CartItem';
+import {ITEM} from '../consts/routes';
 import {
   useCartItems,
   useDeleteCartItem,
@@ -12,13 +15,17 @@ import {
 import {CartItemDefinition} from '../types/cart';
 import BlurBackground from './BlurBackground';
 
+type Navigation = NavigationHelpers<ParamListBase, BottomTabNavigationEventMap>;
+
 interface Props {
+  navigation: Navigation;
   bottomSheetRef: React.RefObject<BottomSheet>;
   setCount: (count: number) => void;
   snapPoints?: BottomSheetProps['snapPoints'];
 }
 
 const CartSheet = ({
+  navigation,
   bottomSheetRef,
   snapPoints = ['70%', '100%'],
   setCount,
@@ -59,18 +66,25 @@ const CartSheet = ({
       <View style={styles.container}>
         <ScrollView>
           {data?.map((cartItem, index) => (
-            <View
+            <Pressable
               key={cartItem.item_id}
-              style={[
-                styles.cartItem,
-                index !== data?.length - 1 && styles.borderBottom,
-              ]}>
-              <CartItem
-                cartItem={cartItem}
-                isLoading={isLoading}
-                handleUpdateQuantity={handleUpdateQuantity}
-              />
-            </View>
+              onPress={() =>
+                navigation.navigate(ITEM, {
+                  item: {id: cartItem.item_id, ...cartItem},
+                })
+              }>
+              <View
+                style={[
+                  styles.cartItem,
+                  index !== data?.length - 1 && styles.borderBottom,
+                ]}>
+                <CartItem
+                  cartItem={cartItem}
+                  isLoading={isLoading}
+                  handleUpdateQuantity={handleUpdateQuantity}
+                />
+              </View>
+            </Pressable>
           ))}
         </ScrollView>
         <View style={styles.buttonContainer}>

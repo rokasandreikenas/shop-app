@@ -105,6 +105,7 @@ const TabNavigationBar = ({
         <TabNavigationCart count={count} onPress={handleToggleCartSheet} />
       </View>
       <CartSheet
+        navigation={navigation}
         bottomSheetRef={bottomSheetRef}
         snapPoints={snapPoints}
         setCount={setCount}
