@@ -2,7 +2,7 @@ import BottomSheet, {BottomSheetProps} from '@gorhom/bottom-sheet';
 import {BottomTabNavigationEventMap} from '@react-navigation/bottom-tabs';
 import {NavigationHelpers, ParamListBase} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {Pressable, ScrollView, StyleSheet, View} from 'react-native';
+import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import Button from '../components/Button';
 import CartItem from '../components/CartItem';
 import {ITEM} from '../consts/routes';
@@ -58,9 +58,13 @@ const CartSheet = ({navigation, bottomSheetRef, snapPoints = ['70%', '100%'], se
             </Pressable>
           ))}
         </ScrollView>
-        <View style={styles.buttonContainer}>
-          <Button title="Proceed to buy" disabled={isLoading} onPress={resetCartItems} />
-        </View>
+        {data?.length ? (
+          <View style={styles.buttonContainer}>
+            <Button title="Proceed to buy" disabled={isLoading} onPress={resetCartItems} />
+          </View>
+        ) : (
+          <Text style={styles.empty}>Cart is empty!</Text>
+        )}
       </View>
     </BottomSheet>
   );
@@ -80,6 +84,10 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
+  },
+  empty: {
+    textAlign: 'center',
+    fontSize: 20,
   },
 });
 
