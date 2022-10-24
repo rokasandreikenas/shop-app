@@ -43,11 +43,7 @@ const ItemScreen = ({route, navigation}: Props) => {
             <ItemDescription description={data.description} />
           </View>
           <View style={styles.addButton}>
-            <ItemAddButton
-              onPress={() => addCartItem(data.id)}
-              disabled={addLoading}
-              fontSize={20}
-            />
+            <ItemAddButton onPress={() => addCartItem(data)} disabled={addLoading} fontSize={20} />
           </View>
         </>
       )}

@@ -3,5 +3,8 @@ export type ItemDefinition = {
   price: number;
   name: string;
   image: string;
-  description?: string;
 };
+
+export interface ItemDetail extends ItemDefinition {
+  description: string;
+}
