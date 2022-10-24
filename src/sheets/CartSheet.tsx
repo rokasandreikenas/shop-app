@@ -8,6 +8,7 @@ import CartItem from '../components/CartItem';
 import {ITEM} from '../consts/routes';
 import {useCartItems, useDeleteCartItem, useResetCartItems, useUpdateCartItem} from '../hooks/cart';
 import {CartItemDefinition} from '../types/cart';
+import {arraySum} from '../utils/number';
 import BlurBackground from './BlurBackground';
 
 type Navigation = NavigationHelpers<ParamListBase, BottomTabNavigationEventMap>;
@@ -31,12 +32,13 @@ const CartSheet = ({
   const {mutateAsync: updateCartItem, isLoading: updateLoading} = useUpdateCartItem();
   const {mutateAsync: deleteCartItem, isLoading: deleteLoading} = useDeleteCartItem();
   const {mutateAsync: resetCartItems, isLoading: resetLoading} = useResetCartItems();
+  const count = arraySum(data?.map(i => i.quantity) || []);
 
   const isLoading = updateLoading || deleteLoading || resetLoading;
 
   useEffect(() => {
-    setCount(data?.length || 0);
-  }, [setCount, data?.length]);
+    setCount(count);
+  }, [setCount, count]);
 
   const handleUpdateQuantity = (id: CartItemDefinition['item_id'], quantity: number, type: 'reduce' | 'increase') => {
     const newQuantity = type === 'reduce' ? quantity - 1 : quantity + 1;
