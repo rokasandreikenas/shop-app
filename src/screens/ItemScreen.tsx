@@ -7,8 +7,9 @@ import ItemDescription from '../components/Item/ItemDescription';
 import ItemName from '../components/Item/ItemName';
 import ItemPrice from '../components/Item/ItemPrice';
 import Loader from '../components/Loader';
-import {useAddCartItem} from '../hooks/cart';
+import {useAddCartItem, useCartItems, useUpdateCartItem} from '../hooks/cart';
 import {useItem} from '../hooks/items';
+import {ItemDefinition} from '../types/item';
 import {RootStackParamList} from '../types/routes';
 
 type ItemRoute = RouteProp<RootStackParamList, 'Item'>;
@@ -22,8 +23,19 @@ interface Props {
 const ItemScreen = ({route, navigation}: Props) => {
   const {item} = route.params;
   const {data, isLoading} = useItem(item.id);
+  const {data: cartItems} = useCartItems();
   const {mutateAsync: addCartItem, isLoading: addLoading} = useAddCartItem();
+  const {mutateAsync: updateCartItem, isLoading: updateLoading} = useUpdateCartItem();
   const title = data?.name ?? item.name;
+
+  const handleAddItem = (itemData: ItemDefinition) => {
+    const inCartItem = cartItems?.find(cartItem => cartItem.name === itemData.name);
+    if (inCartItem) {
+      updateCartItem({id: itemData.id, quantity: inCartItem.quantity + 1});
+    } else {
+      addCartItem(itemData);
+    }
+  };
 
   React.useEffect(() => {
     navigation.setOptions({title});
@@ -31,22 +43,17 @@ const ItemScreen = ({route, navigation}: Props) => {
 
   return (
     <View style={styles.container}>
-      {isLoading && <Loader />}
-      {data && (
-        <>
-          <Image source={{uri: data.image}} style={styles.image} />
-          <View style={styles.details}>
-            <ItemName name={data.name} fontSize={24} />
-            <ItemPrice price={item.price} fontSize={24} />
-          </View>
-          <View style={styles.description}>
-            <ItemDescription description={data.description} />
-          </View>
-          <View style={styles.addButton}>
-            <ItemAddButton onPress={() => addCartItem(data)} disabled={addLoading} fontSize={20} />
-          </View>
-        </>
-      )}
+      <Image source={{uri: item.image}} style={styles.image} />
+      <View style={styles.details}>
+        <ItemName name={item.name} fontSize={24} />
+        <ItemPrice price={item.price} fontSize={24} />
+      </View>
+      <View style={styles.description}>
+        {isLoading ? <Loader /> : <ItemDescription description={data?.description || ''} />}
+      </View>
+      <View style={styles.addButton}>
+        <ItemAddButton onPress={() => handleAddItem(item)} disabled={addLoading || updateLoading} fontSize={20} />
+      </View>
     </View>
   );
 };
