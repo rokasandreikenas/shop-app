@@ -92,7 +92,13 @@ const TabNavigationBar = ({state, descriptors, navigation}: BottomTabBarProps) =
         })}
         <TabNavigationCart count={count} onPress={handleToggleCartSheet} />
       </View>
-      <CartSheet navigation={navigation} bottomSheetRef={bottomSheetRef} snapPoints={snapPoints} setCount={setCount} />
+      <CartSheet
+        navigation={navigation}
+        bottomSheetRef={bottomSheetRef}
+        snapPoints={snapPoints}
+        handleToggleCartSheet={handleToggleCartSheet}
+        setCount={setCount}
+      />
     </>
   );
 };
