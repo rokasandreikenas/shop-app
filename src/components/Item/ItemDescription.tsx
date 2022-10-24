@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text} from 'react-native';
-import {ItemDefinition} from '../../types/item';
+import {ItemDetail} from '../../types/item';
 
 interface Props {
-  description: ItemDefinition['description'];
+  description: ItemDetail['description'];
   fontSize?: number;
 }
 
