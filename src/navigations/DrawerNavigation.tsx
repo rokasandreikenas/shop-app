@@ -7,9 +7,7 @@ const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
   return (
-    <Drawer.Navigator
-      initialRouteName={MAIN}
-      screenOptions={{headerShown: false}}>
+    <Drawer.Navigator initialRouteName={MAIN} screenOptions={{headerShown: false}}>
       <Drawer.Screen name={MAIN} component={TabNavigation} />
     </Drawer.Navigator>
   );

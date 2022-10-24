@@ -17,10 +17,7 @@ const Favorite = ({onPress}: Props) => {
 
   return (
     <TouchableOpacity onPress={favorite}>
-      <Image
-        source={favorited ? images.heartFilled : images.heart}
-        style={[styles.icon, favorited && styles.fill]}
-      />
+      <Image source={favorited ? images.heartFilled : images.heart} style={[styles.icon, favorited && styles.fill]} />
     </TouchableOpacity>
   );
 };

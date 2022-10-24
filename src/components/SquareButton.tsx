@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Image,
-  ImageSourcePropType,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import {Image, ImageSourcePropType, StyleSheet, TouchableOpacity} from 'react-native';
 
 interface Props {
   image: ImageSourcePropType;
@@ -26,14 +21,8 @@ const SquareButton = ({
   disabled = false,
 }: Props) => {
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={[styles.container, {width, height}]}
-      disabled={disabled}>
-      <Image
-        source={image}
-        style={[styles.icon, {width: iconSize, height: iconSize}]}
-      />
+    <TouchableOpacity onPress={onPress} style={[styles.container, {width, height}]} disabled={disabled}>
+      <Image source={image} style={[styles.icon, {width: iconSize, height: iconSize}]} />
     </TouchableOpacity>
   );
 };

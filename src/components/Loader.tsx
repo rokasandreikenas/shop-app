@@ -7,12 +7,7 @@ interface Props {
 }
 
 const Loader = ({spaced = true, center = false}: Props) => {
-  return (
-    <ActivityIndicator
-      size="large"
-      style={[spaced && styles.space, center && styles.center]}
-    />
-  );
+  return <ActivityIndicator size="large" style={[spaced && styles.space, center && styles.center]} />;
 };
 
 const styles = StyleSheet.create({

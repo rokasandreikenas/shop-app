@@ -7,20 +7,12 @@ import SquareButton from '../SquareButton';
 interface Props {
   cartItem: CartItemDefinition;
   isLoading: boolean;
-  handleUpdateQuantity: (
-    id: CartItemDefinition['item_id'],
-    quantity: number,
-    type: 'reduce' | 'increase',
-  ) => void;
+  handleUpdateQuantity: (id: CartItemDefinition['item_id'], quantity: number, type: 'reduce' | 'increase') => void;
 }
 
 const boxSize = 36;
 
-const CartItemCounter = ({
-  cartItem,
-  isLoading,
-  handleUpdateQuantity,
-}: Props) => {
+const CartItemCounter = ({cartItem, isLoading, handleUpdateQuantity}: Props) => {
   return (
     <View style={styles.container}>
       <SquareButton
@@ -29,9 +21,7 @@ const CartItemCounter = ({
         height={boxSize}
         iconSize={10}
         disabled={isLoading}
-        onPress={() =>
-          handleUpdateQuantity(cartItem.item_id, cartItem.quantity, 'reduce')
-        }
+        onPress={() => handleUpdateQuantity(cartItem.item_id, cartItem.quantity, 'reduce')}
       />
       <View style={styles.countContainer}>
         <Text style={styles.count}>{cartItem.quantity}</Text>
@@ -42,9 +32,7 @@ const CartItemCounter = ({
         height={boxSize}
         iconSize={10}
         disabled={isLoading}
-        onPress={() =>
-          handleUpdateQuantity(cartItem.item_id, cartItem.quantity, 'increase')
-        }
+        onPress={() => handleUpdateQuantity(cartItem.item_id, cartItem.quantity, 'increase')}
       />
     </View>
   );

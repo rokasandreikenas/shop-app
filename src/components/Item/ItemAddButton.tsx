@@ -9,10 +9,7 @@ interface Props {
 
 const ItemAddButton = ({onPress, disabled, fontSize = 13}: Props) => {
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      disabled={disabled}
-      style={styles.container}>
+    <TouchableOpacity onPress={onPress} disabled={disabled} style={styles.container}>
       <Text style={[styles.text, {fontSize}]}>SHOP NOW</Text>
     </TouchableOpacity>
   );

@@ -6,4 +6,5 @@ module.exports = {
   trailingComma: 'all',
   importOrder: ['^components/(.*)$', '^[./]'],
   importOrderSortSpecifiers: true,
+  printWidth: 120,
 };

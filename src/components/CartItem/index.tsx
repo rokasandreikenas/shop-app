@@ -8,11 +8,7 @@ import CartItemImage from './CartItemImage';
 interface Props {
   cartItem: CartItemDefinition;
   isLoading: boolean;
-  handleUpdateQuantity: (
-    id: CartItemDefinition['item_id'],
-    quantity: number,
-    type: 'reduce' | 'increase',
-  ) => void;
+  handleUpdateQuantity: (id: CartItemDefinition['item_id'], quantity: number, type: 'reduce' | 'increase') => void;
 }
 
 const CartItem = ({cartItem, isLoading, handleUpdateQuantity}: Props) => {
@@ -20,11 +16,7 @@ const CartItem = ({cartItem, isLoading, handleUpdateQuantity}: Props) => {
     <View style={styles.container}>
       <View style={styles.leftSide}>
         <CartItemImage image={cartItem.image} />
-        <CartItemCounter
-          cartItem={cartItem}
-          isLoading={isLoading}
-          handleUpdateQuantity={handleUpdateQuantity}
-        />
+        <CartItemCounter cartItem={cartItem} isLoading={isLoading} handleUpdateQuantity={handleUpdateQuantity} />
       </View>
       <View style={styles.rightSide}>
         <CartItemDetails cartItem={cartItem} />

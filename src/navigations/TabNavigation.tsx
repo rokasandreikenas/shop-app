@@ -8,9 +8,7 @@ const BottomTab = createBottomTabNavigator();
 
 const TabNavigation = () => {
   return (
-    <BottomTab.Navigator
-      screenOptions={{headerShown: false}}
-      tabBar={props => <TabNavigationBar {...props} />}>
+    <BottomTab.Navigator screenOptions={{headerShown: false}} tabBar={props => <TabNavigationBar {...props} />}>
       <BottomTab.Screen name="TabHome" component={StackNavigationHome} />
       <BottomTab.Screen name="TabSearch" component={EmptyScreen} />
       <BottomTab.Screen name="TabFavourites" component={EmptyScreen} />

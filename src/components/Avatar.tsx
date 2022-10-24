@@ -11,14 +11,7 @@ interface Props {
 const Avatar = ({title = '', image, rounded = false}: Props) => {
   return (
     <View style={[styles.container, rounded && styles.rounded]}>
-      {image ? (
-        <Image
-          style={[styles.container, rounded && styles.rounded]}
-          source={image}
-        />
-      ) : (
-        <Text>{title}</Text>
-      )}
+      {image ? <Image style={[styles.container, rounded && styles.rounded]} source={image} /> : <Text>{title}</Text>}
     </View>
   );
 };

@@ -9,10 +9,7 @@ interface Props {
 
 const Button = ({onPress, title, disabled}: Props) => {
   return (
-    <TouchableOpacity
-      style={styles.button}
-      onPress={onPress}
-      disabled={disabled}>
+    <TouchableOpacity style={styles.button} onPress={onPress} disabled={disabled}>
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );

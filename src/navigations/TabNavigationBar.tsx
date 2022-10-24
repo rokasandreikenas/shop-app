@@ -1,13 +1,7 @@
 import BottomSheet from '@gorhom/bottom-sheet';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import {
-  Image,
-  ImageSourcePropType,
-  Pressable,
-  StyleSheet,
-  View,
-} from 'react-native';
+import {Image, ImageSourcePropType, Pressable, StyleSheet, View} from 'react-native';
 import {activeIndicatorColor, indicatorColor} from '../consts/colors';
 import {images} from '../consts/images';
 import CartSheet from '../sheets/CartSheet';
@@ -20,11 +14,7 @@ const tabIcons: Record<string, ImageSourcePropType> = {
   TabCart: images.basket,
 };
 
-const TabNavigationBar = ({
-  state,
-  descriptors,
-  navigation,
-}: BottomTabBarProps) => {
+const TabNavigationBar = ({state, descriptors, navigation}: BottomTabBarProps) => {
   const bottomSheetRef = React.useRef<BottomSheet>(null);
   const [open, setOpen] = React.useState(false);
   const [count, setCount] = React.useState(0);
@@ -91,9 +81,7 @@ const TabNavigationBar = ({
               <Image
                 style={[
                   {
-                    tintColor: isFocused
-                      ? activeIndicatorColor
-                      : indicatorColor,
+                    tintColor: isFocused ? activeIndicatorColor : indicatorColor,
                   },
                   styles.icon,
                 ]}
@@ -104,12 +92,7 @@ const TabNavigationBar = ({
         })}
         <TabNavigationCart count={count} onPress={handleToggleCartSheet} />
       </View>
-      <CartSheet
-        navigation={navigation}
-        bottomSheetRef={bottomSheetRef}
-        snapPoints={snapPoints}
-        setCount={setCount}
-      />
+      <CartSheet navigation={navigation} bottomSheetRef={bottomSheetRef} snapPoints={snapPoints} setCount={setCount} />
     </>
   );
 };

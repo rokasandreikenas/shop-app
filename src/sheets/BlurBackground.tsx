@@ -11,10 +11,7 @@ const BlurBackground: React.FC<BottomSheetBackgroundProps> = ({style}) => {
     borderTopRightRadius: 50,
     borderColor: blurBackgroudColor,
   }));
-  const containerStyle = useMemo(
-    () => [style, containerAnimatedStyle],
-    [style, containerAnimatedStyle],
-  );
+  const containerStyle = useMemo(() => [style, containerAnimatedStyle], [style, containerAnimatedStyle]);
 
   return <Animated.View pointerEvents="none" style={containerStyle} />;
 };
