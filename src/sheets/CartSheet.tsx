@@ -2,9 +2,10 @@ import BottomSheet, {BottomSheetProps} from '@gorhom/bottom-sheet';
 import {BottomTabNavigationEventMap} from '@react-navigation/bottom-tabs';
 import {NavigationHelpers, ParamListBase} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import Button from '../components/Button';
 import CartItem from '../components/CartItem';
+import Typography from '../components/Typography';
 import {useCartItems, useDeleteCartItem, useResetCartItems, useUpdateCartItem} from '../hooks/cart';
 import {CartItemDefinition} from '../types/cart';
 import {StackType} from '../types/routes';
@@ -72,7 +73,7 @@ const CartSheet = ({
             <Button title="Proceed to buy" disabled={isLoading} onPress={resetCartItems} />
           </View>
         ) : (
-          <Text style={styles.empty}>Cart is empty!</Text>
+          <Typography style={styles.empty}>Cart is empty!</Typography>
         )}
       </View>
     </BottomSheet>

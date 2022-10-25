@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import Typography from './Typography';
 
 interface Props {
   onPress: () => void;
@@ -10,7 +11,7 @@ interface Props {
 const Button = ({onPress, title, disabled}: Props) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress} disabled={disabled}>
-      <Text style={styles.text}>{title}</Text>
+      <Typography style={styles.text}>{title}</Typography>
     </TouchableOpacity>
   );
 };

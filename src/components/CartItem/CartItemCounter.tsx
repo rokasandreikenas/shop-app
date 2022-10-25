@@ -1,8 +1,9 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {images} from '../../consts/images';
 import {CartItemDefinition} from '../../types/cart';
 import SquareButton from '../SquareButton';
+import Typography from '../Typography';
 
 interface Props {
   cartItem: CartItemDefinition;
@@ -24,7 +25,7 @@ const CartItemCounter = ({cartItem, isLoading, handleUpdateQuantity}: Props) => 
         onPress={() => handleUpdateQuantity(cartItem.item_id, cartItem.quantity, 'reduce')}
       />
       <View style={styles.countContainer}>
-        <Text style={styles.count}>{cartItem.quantity}</Text>
+        <Typography style={styles.count}>{cartItem.quantity}</Typography>
       </View>
       <SquareButton
         image={images.plus}

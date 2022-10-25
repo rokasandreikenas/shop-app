@@ -1,5 +1,6 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
+import Typography from './Typography';
 
 interface Props {
   title?: string;
@@ -11,7 +12,11 @@ interface Props {
 const Avatar = ({title = '', image, rounded = false}: Props) => {
   return (
     <View style={[styles.container, rounded && styles.rounded]}>
-      {image ? <Image style={[styles.container, rounded && styles.rounded]} source={image} /> : <Text>{title}</Text>}
+      {image ? (
+        <Image style={[styles.container, rounded && styles.rounded]} source={image} />
+      ) : (
+        <Typography>{title}</Typography>
+      )}
     </View>
   );
 };

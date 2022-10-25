@@ -1,6 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {ItemDetail} from '../../types/item';
+import Typography from '../Typography';
 
 interface Props {
   description: ItemDetail['description'];
@@ -8,7 +9,7 @@ interface Props {
 }
 
 const ItemDescription = ({description, fontSize = 14}: Props) => {
-  return <Text style={[styles.description, {fontSize}]}>{description}</Text>;
+  return <Typography style={[styles.description, {fontSize}]}>{description}</Typography>;
 };
 
 const styles = StyleSheet.create({

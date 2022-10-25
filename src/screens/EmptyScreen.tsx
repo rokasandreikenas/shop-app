@@ -1,10 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import Typography from '../components/Typography';
 
 const EmptyScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Empty</Text>
+      <Typography>Empty</Typography>
     </View>
   );
 };

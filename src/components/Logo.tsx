@@ -1,9 +1,10 @@
 import React from 'react';
-import {Platform, StyleSheet, Text} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {getSecondaryFont} from '../utils/font';
+import Typography from './Typography';
 
 const Logo = () => {
-  return <Text style={styles.logo}>baggz</Text>;
+  return <Typography style={styles.logo}>baggz</Typography>;
 };
 
 const styles = StyleSheet.create({
@@ -11,6 +12,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: '500',
     fontFamily: getSecondaryFont(Platform.OS),
+    color: '#000000',
   },
 });
 

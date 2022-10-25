@@ -1,5 +1,6 @@
 import React from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, View} from 'react-native';
+import Typography from './Typography';
 
 interface Props {
   count: number;
@@ -12,7 +13,7 @@ interface Props {
 const Count = ({count, top, right, bottom, left}: Props) => {
   return (
     <View style={[styles.countContainer, {top, right, bottom, left}]}>
-      <Text style={styles.count}>{count}</Text>
+      <Typography style={styles.count}>{count}</Typography>
     </View>
   );
 };

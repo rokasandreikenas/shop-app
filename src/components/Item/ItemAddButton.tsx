@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import Typography from '../Typography';
 
 interface Props {
   onPress: () => void;
@@ -10,7 +11,7 @@ interface Props {
 const ItemAddButton = ({onPress, disabled, fontSize = 13}: Props) => {
   return (
     <TouchableOpacity onPress={onPress} disabled={disabled} style={styles.container}>
-      <Text style={[styles.text, {fontSize}]}>SHOP NOW</Text>
+      <Typography style={[styles.text, {fontSize}]}>SHOP NOW</Typography>
     </TouchableOpacity>
   );
 };
