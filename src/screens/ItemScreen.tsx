@@ -26,7 +26,7 @@ const ItemScreen = ({route, navigation}: Props) => {
   const {data: cartItems} = useCartItems();
   const {mutateAsync: addCartItem, isLoading: addLoading} = useAddCartItem();
   const {mutateAsync: updateCartItem, isLoading: updateLoading} = useUpdateCartItem();
-  const title = data?.name ?? item.name;
+  const title = item.name;
 
   const handleAddItem = (itemData: ItemDefinition) => {
     const inCartItem = cartItems?.find(cartItem => cartItem.name === itemData.name);
@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
   container: {flex: 1},
   image: {
     width: '100%',
-    height: '30%',
+    height: '50%',
+    resizeMode: 'contain',
   },
 
   details: {
