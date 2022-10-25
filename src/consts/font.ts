@@ -1,1 +1,2 @@
-export const secondaryFont = 'Times New Roman';
+export const secondaryFontiOS = 'Times New Roman';
+export const secondaryFontAndroid = 'serif';

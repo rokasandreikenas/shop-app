@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
-import {secondaryFont} from '../../consts/font';
+import {Platform, StyleSheet, Text} from 'react-native';
 import {ItemDefinition} from '../../types/item';
+import {getSecondaryFont} from '../../utils/font';
 
 interface Props {
   name: ItemDefinition['name'];
@@ -14,7 +14,7 @@ const ItemName = ({name, fontSize = 18}: Props) => {
 
 const styles = StyleSheet.create({
   name: {
-    fontFamily: secondaryFont,
+    fontFamily: getSecondaryFont(Platform.OS),
     fontWeight: '500',
   },
 });
