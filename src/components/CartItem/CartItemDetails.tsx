@@ -19,7 +19,7 @@ const CartItemDetails = ({cartItem}: Props) => {
       <Typography style={styles.title}>Lorem, ipsum dolor</Typography>
       <ItemDescription description="Lorem ipsum dolor sit amet" fontSize={12} />
       <View style={styles.block}>
-        <ItemPrice price={cartItem.price} />
+        <ItemPrice price={cartItem.quantity * cartItem.price} />
       </View>
     </>
   );
