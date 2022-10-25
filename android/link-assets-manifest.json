@@ -2,6 +2,10 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "assets/fonts/times new roman.ttf",
+      "sha1": "78f02dbda3abc563e972f7d26ff26ba6abd738d9"
+    },
+    {
       "path": "assets/icons/arrow-left.png",
       "sha1": "955c34f307089adbf5eb26c616173b8f72812b39"
     },
@@ -28,6 +32,14 @@
     {
       "path": "assets/icons/menu.png",
       "sha1": "c883bc4da4b7b959a28d989732acc163d623f12f"
+    },
+    {
+      "path": "assets/icons/minus.png",
+      "sha1": "9771dd289ecb16c57bec63c1074cad531fd8c2ee"
+    },
+    {
+      "path": "assets/icons/plus.png",
+      "sha1": "25c9897c82470700d2c1038c8e2d8ab005158ddd"
     },
     {
       "path": "assets/icons/search.png",
