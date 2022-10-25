@@ -1,9 +1,15 @@
 import React from 'react';
-import {StyleSheet, Text, TextProps} from 'react-native';
+import {Platform, StyleSheet, Text, TextProps} from 'react-native';
+import {getSecondaryFont} from '../utils/font';
 
-const Typography = ({children = '', style, ...restProps}: TextProps) => {
+interface Props extends TextProps {
+  secondaryFont?: boolean;
+}
+
+const Typography = ({children = '', style, secondaryFont = false, ...restProps}: Props) => {
+  const fontFamily = secondaryFont ? getSecondaryFont(Platform.OS) : undefined;
   return (
-    <Text style={[styles.base, style]} {...restProps}>
+    <Text style={[styles.base, {fontFamily}, style]} {...restProps}>
       {children}
     </Text>
   );

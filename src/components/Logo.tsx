@@ -1,17 +1,19 @@
 import React from 'react';
-import {Platform, StyleSheet} from 'react-native';
-import {getSecondaryFont} from '../utils/font';
+import {StyleSheet} from 'react-native';
 import Typography from './Typography';
 
 const Logo = () => {
-  return <Typography style={styles.logo}>baggz</Typography>;
+  return (
+    <Typography style={styles.logo} secondaryFont>
+      baggz
+    </Typography>
+  );
 };
 
 const styles = StyleSheet.create({
   logo: {
     fontSize: 26,
     fontWeight: '500',
-    fontFamily: getSecondaryFont(Platform.OS),
     color: '#000000',
   },
 });
