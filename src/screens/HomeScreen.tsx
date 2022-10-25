@@ -5,12 +5,11 @@ import Carousel from '../components/Carousel';
 import Item from '../components/Item';
 import Loader from '../components/Loader';
 import {images} from '../consts/images';
-import {ITEM} from '../consts/routes';
 import {useAddCartItem, useCartItems, useUpdateCartItem} from '../hooks/cart';
 import {useItems} from '../hooks/items';
 import MainLayout from '../layouts/MainLayout';
 import {ItemDefinition} from '../types/item';
-import {RootStackParamList} from '../types/routes';
+import {RootStackParamList, StackType} from '../types/routes';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -40,7 +39,7 @@ const HomeScreen = ({navigation}: Props) => {
               <Item
                 item={item}
                 isLoading={addLoading || updateLoading}
-                openDetails={() => navigation.navigate(ITEM, {item})}
+                openDetails={() => navigation.navigate(StackType.Item, {item})}
                 handleAddItem={() => handleAddItem(item)}
               />
             </View>

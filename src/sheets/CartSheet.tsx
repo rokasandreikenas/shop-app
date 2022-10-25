@@ -5,9 +5,9 @@ import React, {useEffect} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import Button from '../components/Button';
 import CartItem from '../components/CartItem';
-import {ITEM} from '../consts/routes';
 import {useCartItems, useDeleteCartItem, useResetCartItems, useUpdateCartItem} from '../hooks/cart';
 import {CartItemDefinition} from '../types/cart';
+import {StackType} from '../types/routes';
 import {arraySum} from '../utils/number';
 import BlurBackground from './BlurBackground';
 
@@ -61,7 +61,7 @@ const CartSheet = ({
                 handleUpdateQuantity={handleUpdateQuantity}
                 openItemDetails={() => {
                   handleToggleCartSheet();
-                  navigation.navigate(ITEM, {item: {id: cartItem.item_id, ...cartItem}});
+                  navigation.navigate(StackType.Item, {item: {id: cartItem.item_id, ...cartItem}});
                 }}
               />
             </View>
