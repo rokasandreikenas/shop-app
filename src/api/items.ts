@@ -1,11 +1,24 @@
-import axios from 'axios';
-import {api} from '../consts/api';
-import {ItemDefinition} from '../types/item';
+import {apiDelay} from '../consts/api';
+import {ItemDefinition, ItemDetail} from '../types/item';
+import {mockDescription, mockItems} from './mock';
 
-export const getItems = () => {
-  return axios.get(`${api}/items`).then(res => res.data);
+export const getItems = async (): Promise<ItemDefinition[]> => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(mockItems);
+    }, apiDelay);
+  });
 };
 
-export const getItem = (id: ItemDefinition['id']) => {
-  return axios.get(`${api}/items/${id}`).then(res => res.data);
+export const getItem = (id: ItemDefinition['id']): Promise<ItemDetail> => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const item = mockItems.find(i => i.id === id);
+      if (item) {
+        resolve({...item, description: mockDescription});
+      } else {
+        reject('Item not found');
+      }
+    }, apiDelay);
+  });
 };

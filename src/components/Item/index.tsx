@@ -6,7 +6,6 @@ import Favorite from '../Favorite';
 import ItemAddButton from './ItemAddButton';
 import ItemImage from './ItemImage';
 import ItemName from './ItemName';
-import ItemPrice from './ItemPrice';
 
 interface Props {
   item: ItemDefinition;
@@ -18,15 +17,14 @@ interface Props {
 const Item = ({item, isLoading, openDetails, handleAddItem}: Props) => {
   return (
     <View style={styles.container}>
-      <View style={styles.favoriteBlock}>
+      <View style={styles.favorite}>
         <Favorite onPress={() => {}} />
       </View>
       <ItemImage image={item.image} onPress={openDetails} />
-      <View style={styles.block}>
+      <View style={styles.name}>
         <ItemName name={item.name} />
       </View>
-      <ItemPrice price={item.price} />
-      <View style={styles.block}>
+      <View style={styles.button}>
         <ItemAddButton onPress={handleAddItem} disabled={isLoading} />
       </View>
     </View>
@@ -38,11 +36,14 @@ const styles = StyleSheet.create({
     backgroundColor: oliveCardColor,
     alignItems: 'center',
   },
-  favoriteBlock: {
+  favorite: {
     alignSelf: 'flex-end',
     padding: 8,
   },
-  block: {marginVertical: 16},
+  name: {
+    marginVertical: 16,
+  },
+  button: {marginBottom: 16},
 });
 
 export default Item;
