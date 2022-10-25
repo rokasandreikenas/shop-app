@@ -54,27 +54,29 @@ const CartSheet = ({
     <BottomSheet ref={bottomSheetRef} index={-1} snapPoints={snapPoints} backgroundComponent={BlurBackground}>
       <View style={styles.container}>
         <ScrollView>
-          {data?.map((cartItem, index) => (
-            <View key={cartItem.item_id} style={[styles.cartItem, index !== data?.length - 1 && styles.borderBottom]}>
-              <CartItem
-                cartItem={cartItem}
-                isLoading={isLoading}
-                handleUpdateQuantity={handleUpdateQuantity}
-                openItemDetails={() => {
-                  handleToggleCartSheet();
-                  navigation.navigate(StackType.Item, {item: {id: cartItem.item_id, ...cartItem}});
-                }}
-              />
-            </View>
-          ))}
-        </ScrollView>
-        {data?.length ? (
-          <View style={styles.buttonContainer}>
-            <Button title="Proceed to buy" disabled={isLoading} onPress={resetCartItems} />
+          <View style={{height: 150 + (data?.length || 1) * 255}}>
+            {data?.map((cartItem, index) => (
+              <View key={cartItem.item_id} style={[styles.cartItem, index !== data?.length - 1 && styles.borderBottom]}>
+                <CartItem
+                  cartItem={cartItem}
+                  isLoading={isLoading}
+                  handleUpdateQuantity={handleUpdateQuantity}
+                  openItemDetails={() => {
+                    handleToggleCartSheet();
+                    navigation.navigate(StackType.Item, {item: {id: cartItem.item_id, ...cartItem}});
+                  }}
+                />
+              </View>
+            ))}
+            {data?.length ? (
+              <View style={styles.buttonContainer}>
+                <Button title="Proceed to buy" disabled={isLoading} onPress={resetCartItems} />
+              </View>
+            ) : (
+              <Typography style={styles.empty}>Cart is empty!</Typography>
+            )}
           </View>
-        ) : (
-          <Typography style={styles.empty}>Cart is empty!</Typography>
-        )}
+        </ScrollView>
       </View>
     </BottomSheet>
   );

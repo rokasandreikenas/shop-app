@@ -33,7 +33,7 @@ const HomeScreen = ({navigation}: Props) => {
       <Carousel images={[images.bag1, images.bag2, images.bag3]} />
       {isLoading && <Loader />}
       <ScrollView>
-        <View style={styles.items}>
+        <View style={[styles.items, {height: (data?.length || 1) * 140}]}>
           {data?.map(item => (
             <View key={item.id} style={styles.item}>
               <Item
