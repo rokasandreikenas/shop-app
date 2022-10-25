@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View} from 'react-native';
 
 interface Props {
   count: number;
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   count: {
     color: '#ffffff',
     fontWeight: '500',
+    marginTop: Platform.OS === 'android' ? -1 : 0, // Android fix for borderWidth
   },
 });
 
