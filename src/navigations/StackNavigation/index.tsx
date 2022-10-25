@@ -1,22 +1,21 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {Image, StyleSheet, TouchableOpacity} from 'react-native';
-import Avatar from '../components/Avatar';
-import {bgColor} from '../consts/colors';
-import {images} from '../consts/images';
-import {HOME, ITEM} from '../consts/routes';
-import HomeScreen from '../screens/HomeScreen';
-import ItemScreen from '../screens/ItemScreen';
-import {RootStackParamList} from '../types/routes';
+import Avatar from '../../components/Avatar';
+import {bgColor} from '../../consts/colors';
+import {images} from '../../consts/images';
+import HomeScreen from '../../screens/HomeScreen';
+import ItemScreen from '../../screens/ItemScreen';
+import {RootStackParamList, StackType} from '../../types/routes';
 import StackNavigationHeader from './StackNavigationHeader';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const StackNavigationHome = () => {
   return (
-    <Stack.Navigator initialRouteName={HOME}>
+    <Stack.Navigator initialRouteName={StackType.Home}>
       <Stack.Screen
-        name={HOME}
+        name={StackType.Home}
         component={HomeScreen}
         options={({navigation}) => ({
           headerStyle: {
@@ -36,7 +35,7 @@ const StackNavigationHome = () => {
           headerShadowVisible: false,
         })}
       />
-      <Stack.Screen name={ITEM} component={ItemScreen} />
+      <Stack.Screen name={StackType.Item} component={ItemScreen} />
     </Stack.Navigator>
   );
 };

@@ -2,15 +2,16 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {Image, ImageSourcePropType, Pressable, StyleSheet, View} from 'react-native';
-import {activeIndicatorColor, indicatorColor} from '../consts/colors';
-import {images} from '../consts/images';
-import CartSheet from '../sheets/CartSheet';
+import {activeIndicatorColor, indicatorColor} from '../../consts/colors';
+import {images} from '../../consts/images';
+import CartSheet from '../../sheets/CartSheet';
+import {BottomTabs} from '../../types/routes';
 import TabNavigationCart from './TabNavigationCart';
 
-const tabIcons: Record<string, ImageSourcePropType> = {
+const tabIcons: Record<BottomTabs, ImageSourcePropType> = {
   TabHome: images.home,
   TabSearch: images.search,
-  TabFavourites: images.heartFilled,
+  TabFavorites: images.heartFilled,
   TabCart: images.basket,
 };
 
@@ -41,9 +42,10 @@ const TabNavigationBar = ({state, descriptors, navigation}: BottomTabBarProps) =
   return (
     <>
       <View style={styles.floatingBar}>
-        {state.routes.map((route: any, index: number) => {
+        {state.routes.map((route: {key: string; name: string}, index: number) => {
           const {options} = descriptors[route.key];
           const isFocused = state.index === index;
+          const routeName = route.name as BottomTabs;
 
           const onPress = () => {
             const event = navigation.emit({
@@ -54,7 +56,7 @@ const TabNavigationBar = ({state, descriptors, navigation}: BottomTabBarProps) =
 
             if (!isFocused && !event.defaultPrevented) {
               navigation.navigate({
-                name: route.name,
+                name: routeName,
                 merge: true,
                 params: undefined,
               });
@@ -76,8 +78,7 @@ const TabNavigationBar = ({state, descriptors, navigation}: BottomTabBarProps) =
               accessibilityLabel={options.tabBarAccessibilityLabel}
               testID={options.tabBarTestID}
               onPress={onPress}
-              onLongPress={onLongPress}
-              style={styles.iconContainer}>
+              onLongPress={onLongPress}>
               <Image
                 style={[
                   {
@@ -85,7 +86,7 @@ const TabNavigationBar = ({state, descriptors, navigation}: BottomTabBarProps) =
                   },
                   styles.icon,
                 ]}
-                source={tabIcons[route.name]}
+                source={tabIcons[routeName]}
               />
             </Pressable>
           );
@@ -106,6 +107,7 @@ const TabNavigationBar = ({state, descriptors, navigation}: BottomTabBarProps) =
 const styles = StyleSheet.create({
   floatingBar: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     position: 'absolute',
     bottom: 32,
     left: 16,
@@ -113,11 +115,8 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderTopWidth: 0,
     elevation: 0,
-    backgroundColor: 'white',
+    backgroundColor: '#ffffff',
     zIndex: 100,
-  },
-  iconContainer: {
-    flex: 1,
   },
   icon: {
     margin: 20,

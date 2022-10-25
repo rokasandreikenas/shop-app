@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import Logo from '../components/Logo';
+import Logo from '../../components/Logo';
 
 const StackNavigationHeader = () => {
   return (
